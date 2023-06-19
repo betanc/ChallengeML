@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  challengeml:
+    image: challengeml
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+
+
+  db:
+    image: postgres
+    restart: always
+    container_name: bdclientes
+    environment:
+      POSTGRES_DB: clientes
+      POSTGRES_USER: diegomb
+      POSTGRES_PASSWORD: DDD111+
+    volumes:
+      - ./create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql
+      - ./data.sql:/docker-entrypoint-initdb.d/data.sql
+    ports:
+      - 5432:5432  
