@@ -20,7 +20,7 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 USER appuser
 
 #request (modulo)
-RUN apt-get update && apt-get install -y libffi-dev
-CMD ["python", "consumirserv.py"]
+#RUN apt-get update && apt-get install -y libffi-dev
+#CMD ["python", "consumirserv.py"]
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["python", "ML.py"]
