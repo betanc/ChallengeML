@@ -11,7 +11,7 @@ services:
   ports:
       - 8000:80
   depends_on:
-      -db
+      - db
 
   db:
     image: postgres
@@ -25,4 +25,5 @@ services:
       - ./create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql
       - ./data.sql:/docker-entrypoint-initdb.d/data.sql
     ports:
-      - 5432:5432  
+      - 5432:5432
+
