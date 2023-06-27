@@ -10,3 +10,4 @@ def ejecutar(script):
 # scripts para bd
 ejecutar('consumirserv.py')
 ejecutar('parselscript.py')
+ejecutar('app.py')
