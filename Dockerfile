@@ -11,6 +11,9 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
+# Install FastAPI and Uvicorn
+RUN pip install --no-cache-dir fastapi uvicorn
+
 WORKDIR /app
 COPY . /app
 
@@ -19,8 +22,4 @@ COPY . /app
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
-#request (modulo)
-#RUN apt-get update && apt-get install -y libffi-dev
-#CMD ["python", "consumirserv.py"]
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["python", "ML.py"]
+CMD ["uvicorn", "auth:app", "--host", "0.0.0.0", "--port", "8000"]

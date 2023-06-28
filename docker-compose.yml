@@ -3,14 +3,22 @@ version: '3.4'
 services:
   challengeml:
     image: challengeml
+    #restart: always
     build:
       context: .
       dockerfile: ./Dockerfile
-  volumes:
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: clientes
+      DB_USER: diegomb
+      DB_PASSWORD: DDD111+
+    volumes:
       - .:/app
-  ports:
+    ports:
       - 8000:80
-  depends_on:
+    #command: ["tail", "-f", "/dev/null"]
+    depends_on:
       - db
 
   db:
